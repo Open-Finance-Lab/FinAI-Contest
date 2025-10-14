@@ -43,7 +43,7 @@ FinRL Contest 2023: `Contest Website <https://open-finance-lab.github.io/finrl-c
    intro/agent
 
 .. toctree::
-   :caption: Environments
+   :caption: Market Environments
    :hidden:
    :maxdepth: 2
 
