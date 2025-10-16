@@ -2,7 +2,18 @@
 Overview
 =================================================
 
+In recent years, financial reinforcement learning (FinRL) with deep reinforcement learning (DRL)
+has shown huge potentials in obtaining profitable trading strategies in complex market conditions.
+The inherently noisy and complex real-world markets makes DRL a compelling approach to adapt
+and learn the optimal trading strategy. However, to effectively learn from the noisy market data,
+market environments are essential to provide a close-to-real simulation of complex markets.
 
+Despite the importance, many open-source market environments have remained outdated and in-
+consistently maintained. Differences in data sources and API design hinder reproducibility and
+makes it difficult to integrate and test agents across environments. Moreover, community initiatives
+such as FinRL Contests require standardized market environments to ensure fair and reproducible
+evaluation of agents. The challenges highlights the demand to organize current open-source market
+environments
 
 
 .. image:: ../image/Market_Environments.png
