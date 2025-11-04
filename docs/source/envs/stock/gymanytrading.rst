@@ -40,8 +40,8 @@ At each timestep, the environment performs the following updates:
 1. **Decode Actions (Discrete)**
    
    The action for each asset is a discrete flag:
-   ``0`` = **SELL/close long**, ``1`` = **BUY/open (or add to) long**.
-   Current position flags are kept in ``self.position`` (``0`` = flat, ``1`` = long).
+   ``0`` = **SELL/close long**, ``1`` = **BUY/open long**.
+   Current position flags are kept in ``self.position`` (``0`` = short, ``1`` = long).
 
    .. code-block:: python
 
