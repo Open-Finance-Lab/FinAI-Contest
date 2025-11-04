@@ -10,5 +10,4 @@ finai_contest/pipeline/results_csv
 finai_contest/pipeline/original_scripts/results
 
 #build files
-docs/build.venv/
-.venv/
+docs/build
