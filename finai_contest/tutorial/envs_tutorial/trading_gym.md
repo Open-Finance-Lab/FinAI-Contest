@@ -80,6 +80,51 @@ self.price = self.df_sample[self.price_name].to_numpy()
 # define the observation feature
 self.obs_features = self.df_sample[self.using_feature].to_numpy()
 ```
+
+4. Save training data
+
+```
+class RandomAgent:
+    def __init__(self):
+        pass
+        
+    def choice_action(self, state):
+        return np.random.randint(3)
+
+
+agent = RandomAgent()
+
+transactions = []
+while not env.backtest_done:
+    state = env.reset()
+    done = False
+    while not done:
+        state, reward, done, info = env.step(agent.choice_action(state))
+        print(reward)
+        #env.render()
+        if done:
+            transactions.append(info)
+            break
+transaction = pd.concat(transactions)
+os.makedirs('../results', exist_ok=True)
+transaction.to_csv("../results/Trading_gym.csv")
+
+
+realized = env.info["reward_fluctuant"] * (env.info["reward_makereal"] != 0).astype(float)
+initial_cash   = 100_000.0
+contract_size  = 1.0
+
+equity_curve = initial_cash + (realized.fillna(0.0) * contract_size).cumsum()
+start_money  = equity_curve.iloc[0]
+end_money    = equity_curve.iloc[-1]
+
+print(f"Start: {start_money:.2f}")
+print(f"End:   {end_money:.2f}")
+print(f"Return: {(end_money/start_money - 1)*100:.2f}%")
+
+print("Full transaction saved to Trading_gym.csv")
+```
+The complete modified file can be found [here]().
 ## Reproduce in our pipeline
 
 ## Standardize the environment
