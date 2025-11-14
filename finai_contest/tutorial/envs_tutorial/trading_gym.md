@@ -168,4 +168,22 @@ def ohlcv_to_tradinggym(df_ohlcv: pd.DataFrame) -> pd.DataFrame:
     ]
     return df[cols]
 ```
+
+2. Construct the environment
+```
+import trading_env
+df = ohlcv_to_tradinggym(train)
+env_train = trading_env.make(env_id='training_v1', obs_data_len=10, step_len=1,
+                       df=df, fee=0.1, max_position=5, deal_col_name='Price', 
+                       feature_names=['Price'])
+```
+Modify the class trading_env accepted by Gymnasium environment.
+```
+import gymnasium as gym
+
+class trading_env(gym.Env):
+    ...
+    self.action_space = gym.spaces.Discrete(3)
+    self.observation_space = gym.spaces.Box(low=-np.inf, high=np.inf, shape=(self.obs_len*self.feature_len,))
+```
 ## Standardize the environment
