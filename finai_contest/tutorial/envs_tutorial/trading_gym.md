@@ -61,6 +61,25 @@ train = pd.read_csv('../data/train_data.csv')
 df = ohlcv_to_tradinggym(train)
 df
 ```
+
+2. Modify training pipeline
+
+The current file runs the training and trading stage with the same dataset, which makes results unsuitable for meaningful comparison with our pipeline. To address, create an environment for each stage, training and testing.
+```
+env = trading_env.make(env_id='backtest_v1', obs_data_len=10, step_len=1,
+                       df=df, fee=0.1, max_position=5, deal_col_name='Price', 
+                       feature_names=['Price'])
+```
+
+3. Modify training_v1.py
+
+The current function would cause some errors due to the as_matrix() function. To fix it, change all as_matrix() function to to_numpy().
+```
+# define the price to calculate the reward
+self.price = self.df_sample[self.price_name].to_numpy()
+# define the observation feature
+self.obs_features = self.df_sample[self.using_feature].to_numpy()
+```
 ## Reproduce in our pipeline
 
 ## Standardize the environment
